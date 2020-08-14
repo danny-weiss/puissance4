@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>	
+</head>
+<style >
+.player1{
+	background-color: yellow;
+}
+.player2{
+	background-color: red;
+}
+
+table, td {
+	border-spacing: 0px;
+	background-color: solid blue;
+}
+td{
+	border-radius: 40px;
+ 	padding: 35px;
+  	border: 10px solid blue;
+  	background-color: white
+}
+.container {
+	position: absolute;
+	bottom: 0;
+}
+th{
+  	border: 10px black;
+}
+</style>
+<body style="background-color: black">
+<div class=container>
+<table style =  width="100%">
+<th>
+	<button onclick="coloring(1)">appuyez pour mettre un pion</button>
+</th>
+<tr>
+	<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+</tr>
+<tr>
+	<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+</tr>
+<tr>
+	<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+</tr>
+<tr>
+	<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+</tr>
+<tr>
+	<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+</tr>
+	<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+</tr>
+</table>
+</div>
+<script>
+	function player1_or_player2() {
+		var odd_or_even = 0;
+		var result = odd_or_even % 2;
+		if (result == 1) {
+			return document.getElementByClassName('player2');
+		}
+	 	if (result == 0){	
+			return document.getElementByClassName('player1');
+		odd_or_even++;
+		}
+	}
+	function coloring(colonne) {
+	console.log('cookie');
+	}
+</script>
+
+</body>
+
