@@ -31,9 +31,33 @@ th{
 <body style="background-color: black">
 <div class=container>
 <table style =  width="100%">
-<th>
-	<button onclick="coloring(1)">appuyez pour mettre un pion</button>
-</th>
+	<thead>
+<tr>
+	<th>
+		<button onclick="coloring(0)">appuyez pour<br> mettre un pion</button>
+	</th>
+	<th>
+		<button onclick="coloring(1)">appuyez pour<br> mettre un pion</button>
+	</th>
+	<th>
+		<button onclick="coloring(2)">appuyez pour<br> mettre un pion</button>
+	</th>
+	<th>
+		<button onclick="coloring(3)">appuyez pour<br> mettre un pion</button>
+	</th>
+	<th>
+		<button onclick="coloring(4)">appuyez pour<br> mettre un pion</button>
+	</th>
+	<th>
+		<button onclick="coloring(5)">appuyez pour<br> mettre un pion</button>
+	</th>
+	<th>
+		<button onclick="coloring(6)">appuyez pour<br> mettre un pion</button>
+	</th>
+</tr>
+</thead>
+
+<tbody>
 <tr>
 	<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 </tr>
@@ -49,26 +73,36 @@ th{
 <tr>
 	<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 </tr>
+<tr>
 	<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 </tr>
+</tbody>
 </table>
 </div>
 <script>
+
 	function player1_or_player2() {
 		var odd_or_even = 0;
 		var result = odd_or_even % 2;
 		if (result == 1) {
-			return document.getElementByClassName('player2');
+			return 'player2';
 		}
 	 	if (result == 0){	
-			return document.getElementByClassName('player1');
+			return 'player1';
 		odd_or_even++;
 		}
 	}
+	var player1_token;
+	var player2_token;
+	function find_cell(row, column) {
+		var mytable = document.getElementsByTagName('tbody')[0];
+		return mytable.children[row].children[column]
+	}
 	function coloring(colonne) {
-	console.log('cookie');
+		var class_to_add = player1_or_player2();
+		var cell = find_cell(5, colonne);
+		document.getElementsByClassName(class_to_add).cell;
 	}
 </script>
 
 </body>
-
