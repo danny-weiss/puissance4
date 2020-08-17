@@ -22,15 +22,19 @@ td{
 }
 .container {
 	position: absolute;
-	bottom: 0;
+
 }
 th{
   	border: 10px black;
 }
+caption#whose_turn {
+    color: white;
+    font-size: 200%;
 </style>
 <body style="background-color: black">
 <div class=container>
 <table style =  width="100%">
+	<caption  id="whose_turn">Au tour des jaunes</caption>
 	<thead>
 <tr>
 	<th>
@@ -80,28 +84,40 @@ th{
 </table>
 </div>
 <script>
+	
 	var odd_or_even = 0;
 	function player1_or_player2() {
 		var result = odd_or_even % 2;
-		odd_or_even += 1;
+		odd_or_even++;
 		if (result == 1) {
+			document.getElementById("whose_turn").innerHTML = "Au tour des jaunes";
 			return 'player2';
 		}
-	 	if (result == 0){	
+	 	if (result == 0){
+	 		document.getElementById("whose_turn").innerHTML = "Au tour des rouges";	
 			return 'player1';
 		}
 	
+	}
+	function if_taken(column) {
+		var i;
+		for (i = 5; i >= 0; i--) {
+			var cell = find_cell(i, column);
+			if (cell.className == '') {
+				return i;
+			}
+		document.getElementById("whose_turn").innerHTML = "vous ne pouvez pas faire ça, cliquer sur un autre bouton";
+		}
 	}
 
 	function find_cell(row, column) {
 		var mytable = document.getElementsByTagName('tbody')[0];
 		return mytable.children[row].children[column]
 	}
-	function coloring(colonne) {
+	function coloring(column) {
+		var row = if_taken(column)
 		var class_to_add = player1_or_player2();
-		var cell = find_cell(5, colonne);
-		console.log(cell);
-		console.log(class_to_add);
+		var cell = find_cell(row, column);
 		cell.className = class_to_add;
 	}
 </script>
