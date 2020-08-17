@@ -80,20 +80,19 @@ th{
 </table>
 </div>
 <script>
-
+	var odd_or_even = 0;
 	function player1_or_player2() {
-		var odd_or_even = 0;
 		var result = odd_or_even % 2;
+		odd_or_even += 1;
 		if (result == 1) {
 			return 'player2';
 		}
 	 	if (result == 0){	
 			return 'player1';
-		odd_or_even++;
 		}
+	
 	}
-	var player1_token;
-	var player2_token;
+
 	function find_cell(row, column) {
 		var mytable = document.getElementsByTagName('tbody')[0];
 		return mytable.children[row].children[column]
@@ -101,7 +100,9 @@ th{
 	function coloring(colonne) {
 		var class_to_add = player1_or_player2();
 		var cell = find_cell(5, colonne);
-		document.getElementsByClassName(class_to_add).cell;
+		console.log(cell);
+		console.log(class_to_add);
+		cell.className = class_to_add;
 	}
 </script>
 
