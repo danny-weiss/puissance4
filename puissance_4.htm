@@ -11,6 +11,7 @@
 }
 
 table, td {
+	background-color: blue;
 	border-spacing: 0px;
 	background-color: solid blue;
 }
@@ -84,6 +85,72 @@ caption#whose_turn {
 </table>
 </div>
 <script>
+	function get_horizontal(x, y, current_player){
+		min_index = Math.max(y -3, 0);
+		var nb_same = 0;
+		max_index = Math.min(y +3, 5);
+		for (current_x = min_index; current_x <= max_index + 1; current_x++){
+			var new_cell = find_cell(x, current_x);
+			if (new_cell.className == current_player) {
+				nb_same++;
+				if (nb_same >= 4){
+					if (current_player == 'player1'){
+						document.getElementById('whose_turn').innerHTML = "les jaunes ont gagné";
+						var yellow_won = 1 ;
+						return 2;
+				}
+			
+
+				else {
+						document.getElementById('whose_turn').innerHTML = "les rouges ont gagné";
+						return 2;
+					}
+			}
+
+			}
+
+			else if (current_x < 0) {
+				nb_same = 0;
+			}
+			else if (current_x >= 0){
+				nb_same = -4;
+			}
+		}
+		return get_vertical(x, y, current_player)
+	}
+	function get_vertical(x, y, current_player){
+		min_index = Math.max(x -3, 0);
+		var nb_same = 0;
+		max_index = Math.min(x +3, 5);
+		for (current_y = min_index; current_x <= max_index + 1; current_y++){
+			var new_cell = find_cell(x, current_y);
+			if (new_cell.className == current_player) {
+				nb_same++;
+				if (nb_same >= 4){
+					if (current_player == 'player1'){
+						document.getElementById('whose_turn').innerHTML = "les jaunes ont gagné";
+						return 2;
+				}
+			
+
+				else {
+						document.getElementById('whose_turn').innerHTML = "les rouges ont gagné";
+						return 2;
+					}
+			}
+
+			}
+
+			else if (current_y < 0) {
+				nb_same = 0;
+			}
+			else if (current_y >= 0){
+				nb_same = -4;
+			}
+		}
+
+	}
+
 	
 	var odd_or_even = 0;
 	function player1_or_player2() {
@@ -99,14 +166,12 @@ caption#whose_turn {
 		}
 	
 	}
-	function if_taken(column) {
-		var i;
-		for (i = 5; i >= 0; i--) {
-			var cell = find_cell(i, column);
+	function find_column(row) {
+		for (i = 5; i != -1; i--) {
+			var cell = find_cell(i, row);
 			if (cell.className == '') {
 				return i;
 			}
-		document.getElementById("whose_turn").innerHTML = "vous ne pouvez pas faire ça, cliquer sur un autre bouton";
 		}
 	}
 
@@ -114,11 +179,26 @@ caption#whose_turn {
 		var mytable = document.getElementsByTagName('tbody')[0];
 		return mytable.children[row].children[column]
 	}
+var stopgame;
 	function coloring(column) {
-		var row = if_taken(column)
+		
+		if (stopgame == true){
+			return
+		}
+
+		var row = find_column(column)			
+		if (row == undefined){
+			window.alert('la colonne est remplie')
+			return
+		}
 		var class_to_add = player1_or_player2();
 		var cell = find_cell(row, column);
 		cell.className = class_to_add;
+		var who_won = get_horizontal(row, column, class_to_add);
+		if (who_won == 2){
+			stopgame = true;
+		}
+
 	}
 </script>
 
