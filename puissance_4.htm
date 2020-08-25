@@ -2,7 +2,7 @@
 <html>
 <head>	
 </head>
-<style >
+<style>
 .player1{
 	background-color: yellow;
 }
@@ -85,70 +85,60 @@ caption#whose_turn {
 </table>
 </div>
 <script>
-	function get_horizontal(x, y, current_player){
-		min_index = Math.max(y -3, 0);
+	function get_horizontal(row, col, current_player){
+		min_index = Math.max(col - 3, 0);
 		var nb_same = 0;
-		max_index = Math.min(y +3, 5);
-		for (current_x = min_index; current_x <= max_index + 1; current_x++){
-			var new_cell = find_cell(x, current_x);
+		max_index = Math.min(col + 3, 6);
+		for (current_col = min_index; current_col <= max_index; current_col++){
+			var new_cell = find_cell(row, current_col);
 			if (new_cell.className == current_player) {
 				nb_same++;
-				if (nb_same >= 4){
+				if (nb_same >= 4) {
 					if (current_player == 'player1'){
 						document.getElementById('whose_turn').innerHTML = "les jaunes ont gagné";
-						var yellow_won = 1 ;
 						return 2;
-				}
-			
-
-				else {
+					} 
+					else {
 						document.getElementById('whose_turn').innerHTML = "les rouges ont gagné";
 						return 2;
 					}
-			}
-
-			}
-
-			else if (current_x < 0) {
+				}
+			} 
+			else 
+			{
 				nb_same = 0;
 			}
-			else if (current_x >= 0){
-				nb_same = -4;
-			}
 		}
-		return get_vertical(x, y, current_player)
+		return get_vertical(row, col, current_player)
+		
 	}
-	function get_vertical(x, y, current_player){
-		min_index = Math.max(x -3, 0);
+	function get_vertical(row, col, current_player){
+		min_index = row;
+		max_index = Math.min(row + 3, 5);
 		var nb_same = 0;
-		max_index = Math.min(x +3, 5);
-		for (current_y = min_index; current_x <= max_index + 1; current_y++){
-			var new_cell = find_cell(x, current_y);
+		for (current_row = min_index; current_row <=  max_index; current_row++){
+			var new_cell = find_cell(current_row, col);
 			if (new_cell.className == current_player) {
 				nb_same++;
 				if (nb_same >= 4){
 					if (current_player == 'player1'){
 						document.getElementById('whose_turn').innerHTML = "les jaunes ont gagné";
 						return 2;
-				}
-			
-
-				else {
+					} else {
 						document.getElementById('whose_turn').innerHTML = "les rouges ont gagné";
 						return 2;
+					
 					}
+				}	
 			}
 
-			}
-
-			else if (current_y < 0) {
+/*			else  {
 				nb_same = 0;
 			}
-			else if (current_y >= 0){
-				nb_same = -4;
-			}
+*/
+			
 		}
-
+		console.log(nb_same);
 	}
 
 	
@@ -157,7 +147,7 @@ caption#whose_turn {
 		var result = odd_or_even % 2;
 		odd_or_even++;
 		if (result == 1) {
-			document.getElementById("whose_turn").innerHTML = "Au tour des jaunes";
+			document.getElementById("whose_turn").innerHTML = "Au tour des jaunes";																									
 			return 'player2';
 		}
 	 	if (result == 0){
@@ -166,9 +156,9 @@ caption#whose_turn {
 		}
 	
 	}
-	function find_column(row) {
+	function find_empty_cell(col) {
 		for (i = 5; i != -1; i--) {
-			var cell = find_cell(i, row);
+			var cell = find_cell(i, col);
 			if (cell.className == '') {
 				return i;
 			}
@@ -176,17 +166,18 @@ caption#whose_turn {
 	}
 
 	function find_cell(row, column) {
+		//row=0 is the top row, col=0 is the left col
 		var mytable = document.getElementsByTagName('tbody')[0];
 		return mytable.children[row].children[column]
 	}
-var stopgame;
+	var stopgame = false;
 	function coloring(column) {
 		
-		if (stopgame == true){
+		if (stopgame == true) {
 			return
 		}
 
-		var row = find_column(column)			
+		var row = find_empty_cell(column)			
 		if (row == undefined){
 			window.alert('la colonne est remplie')
 			return
