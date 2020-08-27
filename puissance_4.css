@@ -1,0 +1,28 @@
+.player1{
+	background-color: yellow;
+}
+.player2{
+	background-color: red;
+}
+
+table, td {
+	background-color: blue;
+	border-spacing: 0px;
+	background-color: solid blue;
+}
+td{
+	border-radius: 40px;
+ 	padding: 35px;
+  	border: 10px solid blue;
+  	background-color: white
+}
+.container {
+	position: absolute;
+
+}
+th{
+  	border: 10px black;
+}
+caption#whose_turn {
+    color: white;
+    font-size: 200%;
