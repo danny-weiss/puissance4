@@ -84,6 +84,43 @@ function get_left_diagonal(row, col, current_player){
 		
 		current_col--;
 	}
+	return get_right_diagonal(row, col, current_player);
+}
+function get_right_diagonal(row, col, current_player){
+
+	var nb_same = 0;
+	var current_col = col;
+
+	for (current_row = row; current_col != 7 || current_row != 6;nb_same = nb_same) {
+		if (current_col == 0 || current_row == 5) {
+			break;
+		} 
+		current_row++;
+		current_col--;
+	}
+	for (current_row = current_row; stop != true; current_row--){
+		if (current_row == -1 || current_col == 7) {
+			break;
+		}
+		var new_cell = find_cell(current_row, current_col);
+		if (new_cell.className == current_player) {
+			nb_same++;
+			if (nb_same >= 4){
+				if (current_player == 'player1'){
+					document.getElementById('whose_turn').innerHTML = "les jaunes ont gagn\351";
+					return 2;
+				} else {
+					document.getElementById('whose_turn').innerHTML = "les rouges ont gagn\351";
+					return 2;
+					
+				}
+			}	
+		}else{
+			nb_same = 0;
+		}
+		
+		current_col++;
+	}
 	console.log(nb_same);
 
 }
