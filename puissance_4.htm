@@ -86,9 +86,9 @@ caption#whose_turn {
 </div>
 <script>
 	function get_horizontal(row, col, current_player){
-		min_index = Math.max(col - 3, 0);
+		var min_index = Math.max(col - 3, 0);
+		var max_index = Math.min(col + 3, 6);
 		var nb_same = 0;
-		max_index = Math.min(col + 3, 6);
 		for (current_col = min_index; current_col <= max_index; current_col++){
 			var new_cell = find_cell(row, current_col);
 			if (new_cell.className == current_player) {
@@ -109,12 +109,12 @@ caption#whose_turn {
 				nb_same = 0;
 			}
 		}
-		return get_vertical(row, col, current_player)
-		
+	return get_vertical(row, col, current_player)		
 	}
 	function get_vertical(row, col, current_player){
-		min_index = row;
-		max_index = Math.min(row + 3, 5);
+		var min_index = row;
+		var max_index = Math.min(row + 3, 5);
+
 		var nb_same = 0;
 		for (current_row = min_index; current_row <=  max_index; current_row++){
 			var new_cell = find_cell(current_row, col);
@@ -131,17 +131,37 @@ caption#whose_turn {
 					}
 				}	
 			}
-
-/*			else  {
-				nb_same = 0;
-			}
-*/
-			
 		}
-		console.log(nb_same);
+		return get_left_diagonal(row, col, current_player);
+
+	}
+	function get_left_diagonal(row, col, current_player){
+		var min_vertical_index = Math.max(row - 3, 0);
+		var max_vertical_index = Math.min(row + 3, 5);
+		var min_horizontal_index = Math.max(col - 3, 0);
+		var max_horizontal_index = Math.min(col + 3, 6);
+		var nb_same = 0;
+		var current_col = min_horizontal_index
+		for (current_row = min_vertical_index; current_row <=  max_vertical_index && current_col <= max_horizontal_index; current_row++){
+			var new_cell = find_cell(current_row, current_col);
+			if (new_cell.className == current_player) {
+				nb_same++;
+				if (nb_same >= 4){
+					if (current_player == 'player1'){
+						document.getElementById('whose_turn').innerHTML = "les jaunes ont gagné";
+						return 2;
+					} else {
+						document.getElementById('whose_turn').innerHTML = "les rouges ont gagné";
+						return 2;
+					
+					}
+				}	
+			}
+		current_col++;	
+		}
+	console.log(nb_same)
 	}
 
-	
 	var odd_or_even = 0;
 	function player1_or_player2() {
 		var result = odd_or_even % 2;
