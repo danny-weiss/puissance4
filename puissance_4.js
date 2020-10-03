@@ -1,3 +1,4 @@
+
 function get_horizontal(row, col, current_player){
 	var min_index = Math.max(col - 3, 0);
 	var max_index = Math.min(col + 3, 6);
@@ -121,7 +122,6 @@ function get_right_diagonal(row, col, current_player){
 		
 		current_col++;
 	}
-	console.log(nb_same);
 
 }
 
@@ -175,3 +175,12 @@ function coloring(column) {
 	}
 
 }
+var buttons = document.getElementsByTagName('th')
+window.addEventListener("load", function() {
+for (var i = 0; i < buttons.length; i++) {
+	var button = buttons[i]
+	button.addEventListener("click", function(e)
+		{
+			coloring(e.target.dataset.column);
+		})
+}})
