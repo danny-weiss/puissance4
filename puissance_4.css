@@ -15,7 +15,7 @@ table, td {
 }
 td{
 	border-radius: 40px;
- 	padding: 35px;
+    padding: 40px 50px 40px 45px;
   	border: 7px solid blue;
   	background-color: white
 }
@@ -29,3 +29,10 @@ th{
 caption#whose_turn {
     color: white;
     font-size: 200%;
+}\
+/* this is unfinished code
+#play_again{
+	color: white;
+	font-size: 150%;
+}
+*/

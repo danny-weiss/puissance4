@@ -175,12 +175,29 @@ function coloring(column) {
 	}
 
 }
-var buttons = document.getElementsByTagName('th')
 window.addEventListener("load", function() {
-for (var i = 0; i < buttons.length; i++) {
-	var button = buttons[i]
-	button.addEventListener("click", function(e)
-		{
-			coloring(e.target.dataset.column);
-		})
-}})
+	// Get table element
+	
+	var table = document.getElementById('game_table');
+	// Add event listener on it
+	table.addEventListener("click", function(event){
+		if (event.target.tagName != 'TD') {
+			return;
+		}
+		var td_list = (event.target.parentNode.children);
+
+		for (var i = 0; i <= 6; i++) {
+		 	var td_to_verify = td_list[i];
+		 	if (td_to_verify == event.target) {
+		 		coloring(i);
+		 	}
+		}
+	})
+/* This is unfinished code
+var rematch = document.getElementById('play_again');
+play_again.addEventListener('click', function(odd_or_even){
+document.getElementById('game_table').className = '';
+console.log('f');
+})
+*/
+})
