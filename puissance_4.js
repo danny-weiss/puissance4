@@ -193,11 +193,17 @@ window.addEventListener("load", function() {
 		 	}
 		}
 	})
-/* This is unfinished code
+
 var rematch = document.getElementById('play_again');
-play_again.addEventListener('click', function(odd_or_even){
-document.getElementById('game_table').className = '';
-console.log('f');
+play_again.addEventListener('click', function(){
+	var tds = document.getElementsByTagName('td');
+	for (var i = tds.length - 1; i >= 0; i--) {
+		var td_to_clean = tds[i];
+		td_to_clean.className = ''
+	}
+	odd_or_even = 0;
+	document.getElementById("whose_turn").innerHTML = "Au tour des jaunes";	
+
+	})
 })
-*/
-})
+

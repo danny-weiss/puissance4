@@ -29,10 +29,12 @@ th{
 caption#whose_turn {
     color: white;
     font-size: 200%;
-}\
-/* this is unfinished code
+}
 #play_again{
 	color: white;
+	position: absolute;
 	font-size: 150%;
+    background-color: #c50808;
+    right: 300px;
 }
-*/
+
