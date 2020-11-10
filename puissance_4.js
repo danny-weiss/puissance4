@@ -125,7 +125,6 @@ function get_right_diagonal(row, col, current_player){
 
 }
 
-
 var odd_or_even = 0;
 function player1_or_player2() {
 	var result = odd_or_even % 2;
@@ -202,6 +201,7 @@ play_again.addEventListener('click', function(){
 		td_to_clean.className = ''
 	}
 	odd_or_even = 0;
+	stopgame = false;
 	document.getElementById("whose_turn").innerHTML = "Au tour des jaunes";	
 
 	})

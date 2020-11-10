@@ -11,30 +11,39 @@ body {
 table, td {
 	background-color: blue;
 	border-spacing: 0px;
+
 	background-color: solid blue;
 }
 td{
 	border-radius: 40px;
-    padding: 40px 50px 40px 45px;
-  	border: 7px solid blue;
+	border: 7px solid blue;
+    width: min(calc(50vw /4), calc(50vh / 4));
+    height: min(calc(50vw /4), calc(50vh / 4));
   	background-color: white
 }
 .container {
 	position: absolute;
 
 }
-th{
-  	border: 10px black;
-}
 caption#whose_turn {
     color: white;
-    font-size: 200%;
+    font-size: 5vh;
 }
 #play_again{
 	color: white;
 	position: absolute;
-	font-size: 150%;
+	font-size: 5vh;
     background-color: #c50808;
-    right: 300px;
+    left: 50vw;
+    top: -10px;
+}
+@media screen and (max-height:513px) {
+	td{border: 5px solid blue;}
+}
+@media screen and (max-height:450px) {
+	td{border: 3px solid blue;}
+}
+@media screen and (max-height:340px) {
+	td{border: 1px solid blue;}
 }
 
