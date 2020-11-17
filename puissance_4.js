@@ -1,4 +1,4 @@
-
+var turn_indicator = document.getElementById('turn_indicator')
 function get_horizontal(row, col, current_player){
 	var min_index = Math.max(col - 3, 0);
 	var max_index = Math.min(col + 3, 6);
@@ -9,11 +9,13 @@ function get_horizontal(row, col, current_player){
 			nb_same++;
 			if (nb_same >= 4) {
 				if (current_player == 'player1'){
-					document.getElementById('whose_turn').innerHTML = "les jaunes ont gagn\351";
+					turn_indicator.innerHTML = "Les jaunes ont gagn\351 !!!";
+					turn_indicator.className = "player1";
 					return 2;
 				} 
 				else {
-					document.getElementById('whose_turn').innerHTML = "les rouges ont gagn\351";
+					turn_indicator.innerHTML = "Les verts ont gagn\351 !!!";
+					turn_indicator.className = "player2";
 					return 2;
 				}
 			}
@@ -35,10 +37,12 @@ function get_vertical(row, col, current_player){
 			nb_same++;
 			if (nb_same >= 4){
 				if (current_player == 'player1'){
-					document.getElementById('whose_turn').innerHTML = "les jaunes ont gagn\351";
+					turn_indicator.innerHTML = "Les jaunes ont gagn\351 !!!";
+					turn_indicator.className = "player1"
 					return 2;
 				} else {
-					document.getElementById('whose_turn').innerHTML = "les rouges ont gagne\351";
+					turn_indicator.innerHTML = "Les verts ont gagn\351 !!!";
+					turn_indicator.className = "player2"
 					return 2;
 					
 				}
@@ -71,10 +75,12 @@ function get_left_diagonal(row, col, current_player){
 			nb_same++;
 			if (nb_same >= 4){
 				if (current_player == 'player1'){
-					document.getElementById('whose_turn').innerHTML = "les jaunes ont gagn\351";
+					turn_indicator.innerHTML = "Les jaunes ont gagn\351 !!!";
+					turn_indicator.className = "player1"
 					return 2;
 				} else {
-					document.getElementById('whose_turn').innerHTML = "les rouges ont gagn\351";
+					turn_indicator.innerHTML = "Les verts ont gagn\351 !!!";
+					turn_indicator.className = "player2"
 					return 2;
 					
 				}
@@ -108,10 +114,12 @@ function get_right_diagonal(row, col, current_player){
 			nb_same++;
 			if (nb_same >= 4){
 				if (current_player == 'player1'){
-					document.getElementById('whose_turn').innerHTML = "les jaunes ont gagn\351";
+					document.getElementById('turn_indicator').innerHTML = "Les jaunes ont gagn\351 !!!";
+					turn_indicator.className = "player1"
 					return 2;
 				} else {
-					document.getElementById('whose_turn').innerHTML = "les rouges ont gagn\351";
+					turn_indicator.innerHTML = "Les verts ont gagn\351 !!!";
+					turn_indicator.className = "player2"
 					return 2;
 					
 				}
@@ -130,11 +138,11 @@ function player1_or_player2() {
 	var result = odd_or_even % 2;
 	odd_or_even++;
 	if (result == 1) {
-		document.getElementById("whose_turn").innerHTML = "Au tour des jaunes";																									
+		turn_indicator.innerHTML = "Au tour des jaunes";																									
 		return 'player2';
 	}
  	if (result == 0){
- 		document.getElementById("whose_turn").innerHTML = "Au tour des rouges";	
+ 		turn_indicator.innerHTML = "Au tour des verts";	
 		return 'player1';
 	}
 
@@ -162,7 +170,7 @@ function coloring(column) {
 
 	var row = find_empty_cell(column)			
 	if (row == undefined){
-		document.getElementById("whose_turn").innerHTML = "La colonne est remplie";	
+		turn_indicator.innerHTML = "La colonne est remplie";	
 		return
 	}
 	var class_to_add = player1_or_player2();
@@ -202,7 +210,9 @@ play_again.addEventListener('click', function(){
 	}
 	odd_or_even = 0;
 	stopgame = false;
-	document.getElementById("whose_turn").innerHTML = "Au tour des jaunes";	
+	turn_indicator.innerHTML = "Au tour des jaunes";
+	turn_indicator.className = ""	
+
 
 	})
 })
