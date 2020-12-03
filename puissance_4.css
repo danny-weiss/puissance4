@@ -48,12 +48,15 @@ caption#turn_indicator {
 	td{border: 1px solid blue;}
 }
 @media screen and (max-height:260px) {
-	td{border: 0px solid blue;}
+	td{border: 5px solid blue;}
 }
 }
 @media screen and (orientation: portrait){
-	#play_again{top: 55vh;font-size: 4vh
-	}
+	#play_again{top: 60vh;font-size: 5vh}
+@media screen and (max-width: 245px){
+	td{border: 3px solid blue;}
 }
+}
+
 
 
